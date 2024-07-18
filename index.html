@@ -1,71 +1,125 @@
 ﻿<!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>计算24点</title>
-		<link rel="shortcut icon" href="/public/img/favicon.png">
-		<style type="text/css">
-			body{
-				font-size:12px;
-				font-family: "Microsoft Yahei",Arial,Helvetica;
-			}
-			button,input{
-				font-family: "Microsoft Yahei",Arial,Helvetica;
-			}
-			.container{
-				width:1200px;
-				margin:0 auto 15px;
-			}
-			textarea{
-				width:320px;
-				height:480px;
-			}
-			.copy{
-				width:1200px;
-				margin:0 auto;
-				text-align:center;
-				color:#666;
-			}
-			.copy a{
-				color:#666;
-				text-decoration:none;
-			}
-			.copy a:hover{
-				text-decoration:underline;
-			}
-		</style>
-		<script type="text/javascript" src="calc24.js"></script>
-	</head>
-	<body>
-		<div class="container">
-			<p>输入数字：</p>
-			<p>
-				<input type="text" id="num1"/>
-				<input type="text" id="num2"/>
-				<input type="text" id="num3"/>
-				<input type="text" id="num4"/>
-			</p>
-			<p><button id="start">计算</button>
-			<p>计算结果：</p>
-			<p>
-				<textarea id="reslut"></textarea>
-			</p>
-		</div>
-		<div class="copy">&copy; <a href="http://www.passer-by.com" target="_blank">passer-by.com</a></div>
-		<script type="text/javascript">
-			document.getElementById('start').onclick = function(){
-				var num1 = +(document.getElementById('num1').value)|| 0;
-				var num2 = +(document.getElementById('num2').value)|| 0;
-				var num3 = +(document.getElementById('num3').value)|| 0;
-				var num4 = +(document.getElementById('num4').value)|| 0;				
-				var arr = calc24(num1,num2,num3,num4);
-				var str = arr.length?'':'不能够计算得到！';
-				for(var i = arr.length;i--;){
-					str += arr[i]+'\n';
-				}
-				document.getElementById('reslut').value = str; 
-			}
-		</script>
-		<script type="text/javascript" src="https://passer-by.com/public/script/stat.js"></script>
-	</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>计算24点</title>
+		<meta name="description" content="24点速算公式，只需提供4个数值，帮你快速算出24点">
+        <meta name="keywords" content="24点计算,24点公式,24点游戏">
+        <link rel="shortcut icon" href="/public/img/favicon.png">
+        <style type="text/css">
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            body{
+                font-size:12px;
+                font-family: "Microsoft Yahei",Arial,Helvetica;
+            }
+            button,input{
+                font-family: "Microsoft Yahei",Arial,Helvetica;
+            }
+            .module{
+                max-width: 480px;
+                margin: 0 auto 20px;
+                padding: 20px;
+                line-height: 24px;
+            }
+            .module .operation-box{
+                margin: 20px 0;
+            }
+            .module input[type="number"]{
+                width: 60px;
+                border: 1px solid #e8e8e8;
+                border-radius: 6px;
+                line-height: 48px;
+                text-align: center;
+                font-size: 24px;
+                font-weight: bold;
+                outline: none;
+            }
+            .module button{
+                display: inline-block;
+                height: 36px;
+                min-width: 90px;
+                padding: 0 12px;
+                margin: 0 8px;
+                background: #2095f2;
+                border: medium none;
+                line-height: 36px;
+                text-align: center;
+                vertical-align: middle;
+                font-size: 15px;
+                color: #fff;
+                cursor: pointer;
+                outline: none;
+                border-radius: 4px;
+                text-decoration: none;
+            }
+            .module textarea{
+                display: block;
+                width:100%;
+                height:240px;
+                padding: 20px;
+                border: 1px solid #e8e8e8;
+                border-radius: 6px;
+                box-sizing: border-box;
+                outline: none;
+            }
+            .copy{
+                width:1200px;
+                margin:0 auto;
+                text-align:center;
+                color:#666;
+            }
+            .copy a{
+                color:#666;
+                text-decoration:none;
+            }
+            .copy a:hover{
+                text-decoration:underline;
+            }
+        </style>
+        <script type="text/javascript" src="calc24.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="module">
+                <div class="input-box">
+                    <p>输入数字：</p>
+                    <p>
+                        <input id="num1" type="number" min="1"/>
+                        <input id="num2" type="number" min="1"/>
+                        <input id="num3" type="number" min="1"/>
+                        <input id="num4" type="number" min="1"/>
+                    </p>
+                </div>
+                <div class="operation-box">
+                    <p><button id="start">计算</button>
+                </div>
+                <div class="output-box">
+                    <p>计算结果：</p>
+                    <p>
+                        <textarea id="reslut"></textarea>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="copy">&copy; <a href="http://www.passer-by.com" target="_blank">passer-by.com</a></div>
+        <script type="text/javascript">
+            document.getElementById('start').onclick = function(){
+                var num1 = +(document.getElementById('num1').value)|| 0;
+                var num2 = +(document.getElementById('num2').value)|| 0;
+                var num3 = +(document.getElementById('num3').value)|| 0;
+                var num4 = +(document.getElementById('num4').value)|| 0;                
+                var arr = calc24(num1,num2,num3,num4);
+                var str = arr.length?'':'不能够计算得到！';
+                for(var i = arr.length;i--;){
+                    str += arr[i]+'\n';
+                }
+                document.getElementById('reslut').value = str; 
+            }
+        </script>
+		<script type="text/javascript" src="https://passer-by.com/public/script/projects.js"></script>
+        <script type="text/javascript" src="https://passer-by.com/public/script/stat.js"></script>
+    </body>
 </html>
