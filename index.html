@@ -18,16 +18,79 @@
             button,input{
                 font-family: "Microsoft Yahei",Arial,Helvetica;
             }
-            .module{
-                max-width: 480px;
+			.inner{
+				max-width: 960px;
+				padding: 0 10px;
+				margin: 0 auto;
+			}
+			.container{
+				margin-bottom: 20px;
+			}
+
+			.mod-head{
+				padding: 10px 0;
+				text-align: right;
+			}
+			.mod-head .btn{
+				position: relative;
+				display: inline-block;
+				min-width: 56px;
+				height: 34px;
+				background: #fff;
+				padding: 0 12px;
+				border: 1px solid #ececec;
+				border-radius: 6px;
+				line-height: 34px;
+				vertical-align: middle;
+				text-decoration: none;
+				text-align: center;
+				font-size: 14px;
+				color: #333;
+				overflow: hidden;
+				transition: color .2s,opacity .2s;
+				font-family: Tahoma,Arial, Helvetica,"Microsoft YaHei";
+				outline: none;
+				-webkit-appearance: none;
+			}
+			.mod-head .btn:after {
+				content: " ";
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				background: #000;
+				left: 0;
+				top: 0;
+				opacity: 0;
+				transition: opacity .2s;
+				border-radius: 6px;
+				overflow: hidden;
+				pointer-events: none;
+			}
+			.mod-head .btn span,.mod-head .btn svg{
+				vertical-align: middle;
+			}
+			.mod-head .btn svg,.mod-head .btn svg+span{
+				position: relative;
+				top: -1px;
+			}
+			.mod-head .btn:hover {
+				color: #000;
+				opacity: 1;
+			}
+			.mod-head .btn:hover:after {
+				opacity: .02;
+			}
+
+            .mod-panel{
+                max-width: 640px;
                 margin: 0 auto 20px;
                 padding: 20px;
                 line-height: 24px;
             }
-            .module .operation-box{
+            .mod-panel .operation-box{
                 margin: 20px 0;
             }
-            .module input[type="number"]{
+            .mod-panel input[type="number"]{
                 width: 60px;
                 border: 1px solid #e8e8e8;
                 border-radius: 6px;
@@ -37,12 +100,11 @@
                 font-weight: bold;
                 outline: none;
             }
-            .module button{
+            .mod-panel button{
                 display: inline-block;
                 height: 36px;
                 min-width: 90px;
                 padding: 0 12px;
-                margin: 0 8px;
                 background: #2095f2;
                 border: medium none;
                 line-height: 36px;
@@ -55,7 +117,7 @@
                 border-radius: 4px;
                 text-decoration: none;
             }
-            .module textarea{
+            .mod-panel textarea{
                 display: block;
                 width:100%;
                 height:240px;
@@ -65,61 +127,85 @@
                 box-sizing: border-box;
                 outline: none;
             }
-            .copy{
-                width:1200px;
-                margin:0 auto;
+
+            .mod-foot .bd{
                 text-align:center;
                 color:#666;
             }
-            .copy a{
+            .mod-foot .bd a{
                 color:#666;
                 text-decoration:none;
             }
-            .copy a:hover{
+            .mod-foot .bd a:hover{
                 text-decoration:underline;
             }
         </style>
         <script type="text/javascript" src="calc24.js"></script>
     </head>
     <body>
-        <div class="container">
-            <div class="module">
-                <div class="input-box">
-                    <p>输入数字：</p>
-                    <p>
-                        <input id="num1" type="number" min="1"/>
-                        <input id="num2" type="number" min="1"/>
-                        <input id="num3" type="number" min="1"/>
-                        <input id="num4" type="number" min="1"/>
-                    </p>
-                </div>
-                <div class="operation-box">
-                    <p><button id="start">计算</button>
-                </div>
-                <div class="output-box">
-                    <p>计算结果：</p>
-                    <p>
-                        <textarea id="reslut"></textarea>
-                    </p>
+        <div class="wrapper">
+			<div class="header">
+                <div class="inner">
+                    <div class="mod-head">
+                        <div class="bd">
+                            <a class="btn" href="https://github.com/mumuy/calc24/" rel="nofollow" target="_blank" title="Github">
+                                <svg aria-hidden="true" class="octicon" height="20" title="GitHub " version="1.1" viewBox="0 0 16 16" width="24"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59 0.4 0.07 0.55-0.17 0.55-0.38 0-0.19-0.01-0.82-0.01-1.49-2.01 0.37-2.53-0.49-2.69-0.94-0.09-0.23-0.48-0.94-0.82-1.13-0.28-0.15-0.68-0.52-0.01-0.53 0.63-0.01 1.08 0.58 1.23 0.82 0.72 1.21 1.87 0.87 2.33 0.66 0.07-0.52 0.28-0.87 0.51-1.07-1.78-0.2-3.64-0.89-3.64-3.95 0-0.87 0.31-1.59 0.82-2.15-0.08-0.2-0.36-1.02 0.08-2.12 0 0 0.67-0.21 2.2 0.82 0.64-0.18 1.32-0.27 2-0.27 0.68 0 1.36 0.09 2 0.27 1.53-1.04 2.2-0.82 2.2-0.82 0.44 1.1 0.16 1.92 0.08 2.12 0.51 0.56 0.82 1.27 0.82 2.15 0 3.07-1.87 3.75-3.65 3.95 0.29 0.25 0.54 0.73 0.54 1.48 0 1.07-0.01 1.93-0.01 2.2 0 0.21 0.15 0.46 0.55 0.38C13.71 14.53 16 11.53 16 8 16 3.58 12.42 0 8 0z"></path></svg>
+                                <span>Github</span>
+                            </a>
+                            <a class="btn" href="/">返回首页</a>
+                        </div>
+                    </div>
                 </div>
             </div>
+			<div class="container">
+                <div class="inner">
+                    <div class="mod-panel">
+                        <div class="bd">
+							<div class="input-box">
+								<p>输入数字：</p>
+								<p>
+									<input type="number" name="number" min="1"/>
+									<input type="number" name="number" min="1"/>
+									<input type="number" name="number" min="1"/>
+									<input type="number" name="number" min="1"/>
+								</p>
+							</div>
+							<div class="operation-box">
+								<p><button id="start">计算</button>
+							</div>
+							<div class="output-box">
+								<p>计算结果：</p>
+								<p>
+									<textarea id="reslut"></textarea>
+								</p>
+							</div>
+						</div>
+                    </div>
+                </div>
+            </div>
+			<div class="footer">
+				<div class="inner">
+					<div class="mod-foot">
+						<div class="bd">&copy; <a href="http://www.passer-by.com" target="_blank">passer-by.com</a></div>
+					</div>
+					<script type="text/javascript">
+						document.getElementById('start').onclick = function(){
+							let list = [];
+							document.querySelectorAll('input[name="number"]').forEach(function($item){
+								list.push(+$item.value||0);
+							});        
+							let arr = calc24(...list);
+							let str = arr.length?'':'不能够计算得到！';
+							for(let i = arr.length;i--;){
+								str += arr[i]+'\n';
+							}
+							document.getElementById('reslut').value = str; 
+						}
+					</script>
+					<script type="text/javascript" src="https://passer-by.com/public/script/projects.js"></script>
+					<script type="text/javascript" src="https://passer-by.com/public/script/stat.js"></script>
+				</div>
+			</div>
         </div>
-        <div class="copy">&copy; <a href="http://www.passer-by.com" target="_blank">passer-by.com</a></div>
-        <script type="text/javascript">
-            document.getElementById('start').onclick = function(){
-                var num1 = +(document.getElementById('num1').value)|| 0;
-                var num2 = +(document.getElementById('num2').value)|| 0;
-                var num3 = +(document.getElementById('num3').value)|| 0;
-                var num4 = +(document.getElementById('num4').value)|| 0;                
-                var arr = calc24(num1,num2,num3,num4);
-                var str = arr.length?'':'不能够计算得到！';
-                for(var i = arr.length;i--;){
-                    str += arr[i]+'\n';
-                }
-                document.getElementById('reslut').value = str; 
-            }
-        </script>
-		<script type="text/javascript" src="https://passer-by.com/public/script/projects.js"></script>
-        <script type="text/javascript" src="https://passer-by.com/public/script/stat.js"></script>
     </body>
 </html>
