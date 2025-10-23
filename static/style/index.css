@@ -17,14 +17,9 @@
     font-weight: bold;  
     color: var(--title-color);
 }
-.mod-panel .hd .more{
-    float: right;
-    text-decoration: none;
-    color: #999;
-}
 .mod-panel .hd::before{
     position: absolute;
-    left: 2px;
+    left: 4px;
     top: 50%;
     content: '';
     width: 4px;
@@ -32,6 +27,25 @@
     background: #2095f2;
     margin-top: -12px;
     border-radius: 3px;
+}
+.mod-panel .hd .more{
+    float: right;
+    position: relative;
+    padding-right: 20px;
+    text-decoration: none;
+    color: #999;
+}
+.mod-panel .hd .more::after{
+    position: absolute;
+    top: 50%;
+    right: 2px;
+    content:'';
+    width: 8px;
+    height: 8px;
+    margin-top: -4px;
+    border-right: 1px solid #999;
+    border-bottom: 1px solid #999;
+    transform: rotate(-45deg);
 }
 .mod-panel .bd{
     padding: 20px;
